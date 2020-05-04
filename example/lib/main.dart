@@ -69,7 +69,8 @@ class _FlutterWeekViewDemoAppBody extends StatelessWidget {
             ),
             RaisedButton(
               child: const Text('Demo dynamic day view'),
-              onPressed: () => Navigator.pushNamed(context, '/dynamic-day-view'),
+              onPressed: () =>
+                  Navigator.pushNamed(context, '/dynamic-day-view'),
             ),
             const Expanded(
               child: SizedBox.expand(),
@@ -102,42 +103,64 @@ class _DemoDayView extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     DateTime date = DateTime(now.year, now.month, now.day);
-    return DayView(
-      initialHour: 7,
-      date: now,
-      events: [
-        FlutterWeekViewEvent(
-          title: 'An event 1',
-          description: 'A description 1',
-          start: date.subtract(const Duration(hours: 1)),
-          end: date.add(const Duration(hours: 18, minutes: 30)),
-        ),
-        FlutterWeekViewEvent(
-          title: 'An event 2',
-          description: 'A description 2',
-          start: date.add(const Duration(hours: 19)),
-          end: date.add(const Duration(hours: 22)),
-        ),
-        FlutterWeekViewEvent(
-          title: 'An event 3',
-          description: 'A description 3',
-          start: date.add(const Duration(hours: 23, minutes: 30)),
-          end: date.add(const Duration(hours: 25, minutes: 30)),
-        ),
-        FlutterWeekViewEvent(
-          title: 'An event 4',
-          description: 'A description 4',
-          start: date.add(const Duration(hours: 20)),
-          end: date.add(const Duration(hours: 21)),
-        ),
-        FlutterWeekViewEvent(
-          title: 'An event 5',
-          description: 'A description 5',
-          start: date.add(const Duration(hours: 20)),
-          end: date.add(const Duration(hours: 21)),
-        ),
-      ],
-      currentTimeCircleColor: Colors.pink,
+    return Padding(
+      padding: const EdgeInsets.only(right: 5),
+      child: DayView(
+        initialHour: 7,
+        dayBarBackgroundColor: Colors.transparent,
+        dayBarHeight: 50,
+        hoursColumnBackgroundColor: Colors.transparent,
+        hoursColumnTextStyle: const TextStyle(color: Color(0xff383838)),
+        dayBarTextStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Color(0xff383838)),
+        hoursColumnWidth: 50,
+        // ruleColor: Colors.red,
+        // currentTimeRuleColor: Colors.red,
+        date: now,
+        events: [
+          FlutterWeekViewEvent(
+              title: 'Nguyễn Tường Vy',
+              description: '',
+              start: date.subtract(const Duration(hours: 1)),
+              end: date.add(const Duration(hours: 1, minutes: 30)),
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: const Color.fromRGBO(240, 93, 34, 0.4)),
+              // backgroundColor: const Color.fromRGBO(240, 93, 34, 0.4),
+              textStyle: const TextStyle(color: const Color(0xff383838))),
+          FlutterWeekViewEvent(
+              title: 'Nguyễn Tường Vy',
+              description: '',
+              start: date.add(const Duration(hours:1)),
+              end: date.add(const Duration(hours: 4)),
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: const Color.fromRGBO(167, 206, 59, 0.6)),
+              // backgroundColor: const Color.fromRGBO(167, 206, 59, 0.6),
+              textStyle: const TextStyle(color: const Color(0xff383838))),
+          FlutterWeekViewEvent(
+            title: 'An event 3',
+            description: 'A description 3',
+            start: date.add(const Duration(hours: 23, minutes: 30)),
+            end: date.add(const Duration(hours: 25, minutes: 30)),
+          ),
+          FlutterWeekViewEvent(
+            title: 'An event 4',
+            description: 'A description 4',
+            start: date.add(const Duration(hours: 20)),
+            end: date.add(const Duration(hours: 21)),
+          ),
+          FlutterWeekViewEvent(
+            title: 'An event 5',
+            description: 'A description 5',
+            start: date.add(const Duration(hours: 20)),
+            end: date.add(const Duration(hours: 21)),
+          ),
+        ],
+        currentTimeCircleColor: Colors.pink,
+      ),
     );
   }
 }
@@ -150,7 +173,11 @@ class _DemoWeekView extends StatelessWidget {
     DateTime date = DateTime(now.year, now.month, now.day);
     return WeekView(
       initialHour: 7,
-      dates: [date.subtract(const Duration(days: 1)), date, date.add(const Duration(days: 1))],
+      dates: [
+        date.subtract(const Duration(days: 1)),
+        date,
+        date.add(const Duration(days: 1))
+      ],
       events: [
         FlutterWeekViewEvent(
           title: 'An event 1',
@@ -209,7 +236,8 @@ class _DynamicDayViewState extends State<_DynamicDayView> {
           IconButton(
             onPressed: () {
               setState(() {
-                DateTime start = DateTime(now.year, now.month, now.day, Random().nextInt(24), Random().nextInt(60));
+                DateTime start = DateTime(now.year, now.month, now.day,
+                    Random().nextInt(24), Random().nextInt(60));
                 events.add(FlutterWeekViewEvent(
                   title: 'Event ' + (events.length + 1).toString(),
                   start: start,

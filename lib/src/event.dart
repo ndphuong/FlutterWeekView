@@ -56,7 +56,8 @@ class FlutterWeekViewEvent extends Comparable<FlutterWeekViewEvent> {
     this.onTap,
     this.onLongPress,
     this.eventTextBuilder,
-  })  : start = DateTime(start.year, start.month, start.day, start.hour, start.minute),
+  })  : start = DateTime(
+            start.year, start.month, start.day, start.hour, start.minute),
         end = DateTime(end.year, end.month, end.day, end.hour, end.minute),
         assert(title != null),
         assert(description != null),
@@ -64,7 +65,8 @@ class FlutterWeekViewEvent extends Comparable<FlutterWeekViewEvent> {
         assert(end != null);
 
   /// Builds the event widget.
-  Widget build(BuildContext context, DayView dayView, double height, double width) {
+  Widget build(
+      BuildContext context, DayView dayView, double height, double width) {
     height = height - (padding?.top ?? 0.0) - (padding?.bottom ?? 0.0);
     width = width - (padding?.left ?? 0.0) - (padding?.right ?? 0.0);
 
@@ -72,17 +74,22 @@ class FlutterWeekViewEvent extends Comparable<FlutterWeekViewEvent> {
       onTap: onTap,
       onLongPress: onLongPress,
       child: Container(
-        decoration: decoration ?? (backgroundColor != null ? BoxDecoration(color: backgroundColor) : null),
-        margin: margin,
-        padding: padding,
-        child: (eventTextBuilder ?? DefaultBuilders.defaultEventTextBuilder)(
-          this,
-          context,
-          dayView,
-          math.max(0.0, height),
-          math.max(0.0, width),
-        ),
-      ),
+          decoration: decoration ??
+              (backgroundColor != null
+                  ? BoxDecoration(color: backgroundColor)
+                  : null),
+          margin: margin,
+          padding: padding,
+          child: Center(
+            child:
+                (eventTextBuilder ?? DefaultBuilders.defaultEventTextBuilder)(
+              this,
+              context,
+              dayView,
+              math.max(0.0, height),
+              math.max(0.0, width),
+            ),
+          )),
     );
   }
 
