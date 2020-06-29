@@ -1,3 +1,4 @@
+// import 'dart:html';
 import 'dart:math' as math;
 
 import 'package:flutter/rendering.dart';
@@ -85,12 +86,20 @@ class DefaultBuilders {
       }
     }
 
-    return RichText(
-      text: TextSpan(
-        children: text,
-        style: event.textStyle,
-      ),
-    );
+    return Text(
+        dayView.hourFormatter(event.start.hour, event.start.minute) +
+            ' - ' +
+            dayView.hourFormatter(event.end.hour, event.end.minute) +
+            '  ' +
+            event.title,
+        style: event.textStyle);
+
+    // return RichText(
+    //   text: TextSpan(
+    //     children: text,
+    //     style: event.textStyle,
+    //   ),
+    // );
   }
 
   /// Builds a date according to a list.
